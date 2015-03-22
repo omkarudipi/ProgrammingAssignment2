@@ -1,10 +1,16 @@
-## Put comments here that give an overall description of what your
-## functions do
+## This R script contains 2 functions that caches matrix inverse to save time and computational resources
 
-## Write a short comment describing this function
 
-## orgmat = orignal matrix
-## invmat = inverse matrix
+## 1. Function makeCacheMatrix
+## input: matrix (assumption - matrix must be invertible)
+## output: saves input matrix as orgmat (original matrix)
+##         initializes invmat (inverse matrix) as NULL
+## lists internal functions: setoriginalmatrix, getoriginalmatrix, setinversematrix, getinversematrix (self explanatory)
+
+## 2. Function cacheSolve
+## input: matrix created with above function: makeCacheMatrix
+## output: if inverse already cached, return inverse matrix
+##         else compute inverse and cache inverse matrix
 
 makeCacheMatrix <- function(orgmat = matrix()) 
 {
