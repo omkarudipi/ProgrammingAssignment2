@@ -2,15 +2,11 @@
 
 
 ## 1. Function makeCacheMatrix
-## input: matrix (assumption - matrix must be invertible)
+## input: matrix (assumption - matrix is always invertible)
 ## output: saves input matrix as orgmat (original matrix)
 ##         initializes invmat (inverse matrix) as NULL
 ## lists internal functions: setoriginalmatrix, getoriginalmatrix, setinversematrix, getinversematrix (self explanatory)
 
-## 2. Function cacheSolve
-## input: matrix created with above function: makeCacheMatrix
-## output: if inverse already cached, return inverse matrix
-##         else compute inverse and cache inverse matrix
 
 makeCacheMatrix <- function(orgmat = matrix()) 
 {
@@ -44,13 +40,17 @@ makeCacheMatrix <- function(orgmat = matrix())
 
 
 
-## Write a short comment describing this function
+## 2. Function cacheSolve
+## input: matrix created with above function: makeCacheMatrix
+## output: if inverse already cached, return inverse matrix
+##         else compute inverse and cache inverse matrix
+## (assumption - matrix is always invertible)
 
 cacheSolve <- function(x, ...) 
 {
-    ## Return a matrix that is the inverse of 'x'
+    ## Return a matrix that is the inverse of matrix 'x'
     
-    m <- x$getinversematrix() ## get then, check if NULL
+    m <- x$getinversematrix() ## get from cache then, check if NULL
     if(!is.null(m)) 
     {
         message("getting cached inverse matrix")
@@ -60,9 +60,9 @@ cacheSolve <- function(x, ...)
     ## else...
     
     data <- x$getoriginalmatrix()
-    m <- solve(data, ...) ## assumption - matrix is always invertible (omitted error handling)
+    m <- solve(data, ...) ## compute inverse - assumption - matrix is always invertible (omitted error handling)
     
-    x$setinversematrix(m) ## set inverse matrix
+    x$setinversematrix(m) ## set inverse matrix (cache)
     m
     
 }
